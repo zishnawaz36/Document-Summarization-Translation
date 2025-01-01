@@ -24,6 +24,16 @@ function Services() {
         <ul className="space-y-6 max-w-4xl text-gray-800">
           {/* Feature 1 */}
           <li className="p-4 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+            <Link to="/both">
+            <strong className="text-blue-600 text-lg">
+              Summarization and Translation:
+            </strong>
+            </Link>
+            <p className="text-gray-700 mt-2">
+             It help to Summarize documents and Translate the sentence. 
+            </p>
+          </li>
+          <li className="p-4 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow">
             <strong className="text-blue-600 text-lg">
               Technical Query-Focused Summarization (TQ-LS):
             </strong>

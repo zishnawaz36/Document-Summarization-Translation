@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import './index.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -13,14 +13,16 @@ const Model = React.lazy(() => import('./Components/Model'));
 const Login = React.lazy(() => import('./Components/Login'));
 const Signup = React.lazy(() => import('./Components/Signup'));
 const Summerization = React.lazy(() => import ('./Components/Summerization'));
-
+const CombineSummaryandTrans = lazy(() => import("./Components/SummaryandTranslate.jsx"));
 function App() {
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <Header />
         <Routes>
+
           <Route exact path="/" element={<Home />} />
+          <Route path='/both' element={<CombineSummaryandTrans/>}></Route>
           <Route path='/translation' element={<TextTranslator />} /> {/* Corrected the typo */}
           <Route path='/summarization' element={<Summerization />} />
           <Route path="/about" element={<About />} />
