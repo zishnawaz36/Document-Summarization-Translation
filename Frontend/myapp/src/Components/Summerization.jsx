@@ -15,7 +15,6 @@ function SummarizationTool() {
 
     setError("");
     setLoading(true);
-    setFinalSummary("Generating final summary...");
 
     try {
       const response = await fetch("http://localhost:5000/summarize", {
@@ -27,21 +26,20 @@ function SummarizationTool() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to fetch summarization results.");
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to fetch summarization results.");
       }
 
       const data = await response.json();
-      console.log("Api response:", data);
-      if (data.error) {
-        setError(data.error);
-        setFinalSummary("");
-      } else {
-        setFinalSummary(data.final_summary);
-      }
+      console.log("Api Data:", data);
+
+      // Update finalSummary with the summarized text
+      setFinalSummary(data.summarized_text);  // Ensure only summarized_text is displayed
+
     } catch (err) {
-      setError("Error: " + err.message);
-      setFinalSummary("");
+      setError(err.message);
       console.log("Error:", err.message);
+      setFinalSummary("");
     } finally {
       setLoading(false);
     }
@@ -54,15 +52,13 @@ function SummarizationTool() {
           📝 Advanced Text Summarization Tool
         </h1>
 
-        <div className="mb-6">
-          <textarea
-            className="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none text-gray-700 text-lg"
-            rows="6"
-            placeholder="Enter your text here to generate a summary..."
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-          ></textarea>
-        </div>
+        <textarea
+          className="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none text-gray-700 text-lg mb-4"
+          rows="6"
+          placeholder="Enter your text here to generate a summary..."
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+        ></textarea>
 
         <button
           onClick={summarizeText}
@@ -78,9 +74,10 @@ function SummarizationTool() {
           <h2 className="text-xl font-semibold text-gray-800 mb-2">Final Summary</h2>
           <div className="p-4 border-2 border-gray-300 bg-gray-50 rounded-lg min-h-[100px]">
             {finalSummary ? (
+              // Display the summarized text as a single line
               <p className="text-gray-700">{finalSummary}</p>
             ) : (
-              <p className="text-gray-400">Final summary will appear here...</p>
+              <p className="text-gray-400">Your summarized text will appear here...</p>
             )}
           </div>
         </div>
