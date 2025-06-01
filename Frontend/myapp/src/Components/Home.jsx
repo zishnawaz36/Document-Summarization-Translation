@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import Header from "./Header";
 
 function Home() {
   return (
     <>
+    <Header/>
       {/* Welcome Header with Animation */}
       <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white text-center py-6 shadow-lg rounded-lg mb-8">
         <h1 className="text-4xl font-extrabold mb-2 animate-bounce">

@@ -17,7 +17,7 @@ function Login() {
 
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:4500/project/login", {
+      const response = await fetch("http://localhost:4000/project/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

@@ -6,14 +6,8 @@ function Header() {
   const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLogged(true);  // User is logged in, token exists
-    }
-  }, []);
-
-  const handleLogout = async () => {
+  // ✅ Move this OUTSIDE useEffect
+  const logoutuser = async () => {
     try {
       const token = localStorage.getItem("token");
 
@@ -23,30 +17,40 @@ function Header() {
       }
 
       const response = await axios.post(
-        "/project/logout", 
-        {}, 
-        { 
-          headers: { 
-            Authorization: `Bearer ${token}` 
-          } 
+        "http://localhost:4000/project/logout",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 
-      alert(response.data.message);  // Show logout success message
-
-      // After logout, remove the token and update isLogged state
+      alert(response.data.message);
       localStorage.removeItem("token");
-      setIsLogged(false);  // Set user as logged out
-
-      // Redirect to login page after logout
+      setIsLogged(false);
       navigate("/login");
     } catch (err) {
-      alert("Error: " + err.response?.data?.message || "Something went wrong");
+      alert("Error: " + (err.response?.data?.message || "Something went wrong"));
     }
   };
 
+  // ✅ Optional: remove this useEffect unless you want auto-logout on mount
+  /*
+  useEffect(() => {
+    logoutuser(); // Auto logout on page load
+  }, []);
+  */
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLogged(true);
+    }
+  }, []);
+
   return (
-    <div className="w-full py-4 bg-gray-100 shadow-lg">
+    <div className="w-full py-4 bg-gray-900 shadow-lg">
       <div className="container mx-auto flex items-center justify-between px-6">
         <div className="flex items-center">
           <img className="h-12 w-20" src="/assets/logo.jpg" alt="Logo" />
@@ -55,53 +59,27 @@ function Header() {
         <nav>
           <ul className="flex space-x-6 text-black font-bold">
             <li>
-              <Link
-                to="/about"
-                className="bg-blue-400 text-white rounded-lg p-2 hover:text-blue-700 transform transition-all duration-300 hover:scale-110"
-              >
+              <Link to="/about" className="bg-cyan-500 text-white rounded-lg p-2 hover:text-gray-700 transform transition-all duration-300 hover:scale-110">
                 About
               </Link>
             </li>
             <li>
-              <Link
-                to="/services"
-                className="bg-blue-400 text-white rounded-lg p-2 hover:text-blue-700 transform transition-all duration-300 hover:scale-110"
-              >
+              <Link to="/services" className="bg-cyan-500 text-white rounded-lg p-2 hover:text-gray-700 transform transition-all duration-300 hover:scale-110">
                 Services
               </Link>
             </li>
             <li>
-              <Link
-                to="/model"
-                className="bg-blue-400 text-white rounded-lg p-2 hover:text-blue-700 transform transition-all duration-300 hover:scale-110"
-              >
+              <Link to="/model" className="bg-cyan-500 text-white rounded-lg p-2 hover:text-gray-700 transform transition-all duration-300 hover:scale-110">
                 Model
               </Link>
             </li>
             <li>
-              <Link
-                to="/contact"
-                className="bg-blue-400 text-white rounded-lg p-2 hover:text-blue-700 transform transition-all duration-300 hover:scale-110"
-              >
+              <Link to="/contact" className="bg-cyan-500 text-white rounded-lg p-2 hover:text-gray-700 transform transition-all duration-300 hover:scale-110">
                 Contact
               </Link>
             </li>
             <li>
-              {!isLogged ? (
-                <button
-                  className="bg-green-500 text-white rounded-lg p-2"
-                  onClick={handleLogout}
-                >
-                  Login
-                </button>
-              ) : (
-                <Link
-                  to="/login"
-                  className="bg-green-400 text-white rounded-lg p-2"
-                >
-                  Login
-                </Link>
-              )}
+              <Link className="bg-cyan-500 text-white rounded-lg p-2 hover:text-gray-700 transform transition-all duration-300 hover:scale-110" onClick={logoutuser} to="#">Logout</Link> {/* Optional: keep to="#" if not navigating */}
             </li>
           </ul>
         </nav>

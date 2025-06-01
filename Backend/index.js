@@ -44,7 +44,7 @@ const startServer = async () => {
   // Register route
   app.post("/project/register", async (req, res) => {
     try {
-      const hashPassword = await bcrypt.hash(req.body.password, 10);
+      const hashPassword = await bcrypt.hash(req.body.password,10);
       const user = await Project.create({
         name: req.body.name,
         email: req.body.email,
@@ -119,8 +119,8 @@ const startServer = async () => {
   };
 
   // Start server
-  app.listen(4500, () => {
-    console.log("Server is running on port 4500");
+  app.listen(4000, () => {
+    console.log("Server is running on port 4000");
   });
 };
 

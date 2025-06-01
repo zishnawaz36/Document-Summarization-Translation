@@ -1,27 +1,46 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
+from transformers import pipeline
 
-# Initialize Flask app
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
-# Allow CORS for React frontend (localhost:3000)
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+# Initialize summarization pipeline
+try:
+    summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+except Exception as e:
+    print(f"Error loading model: {str(e)}")
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/summarize', methods=['POST'])
-def summarize():
+def summarize_text():
     try:
-        # Get the data from the POST request
         data = request.get_json()
-        text = data.get('text', '')
+        text = data.get('text', '').strip()
 
-        # Add your summarization logic here (placeholder for now)
-        summarized_text = f"Summarized: {text}"
+        if not text:
+            return jsonify({
+                'error': 'No text provided for summarization.',
+                'summary': ''
+            }), 400
 
-        return jsonify({"summarized_text": summarized_text})
+        # Perform summarization
+        summary = summarizer(text, max_length=100, min_length=30, do_sample=False)
+
+        return jsonify({
+            'original_text': text,
+            'summary': summary[0]['summary_text'],
+            'error': ''
+        })
 
     except Exception as e:
-        # Return an error message if something goes wrong
-        return jsonify({"error": str(e)}), 500
+        return jsonify({
+            'error': f"An error occurred: {str(e)}",
+            'summary': ''
+        }), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True)

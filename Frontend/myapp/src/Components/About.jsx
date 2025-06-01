@@ -2,77 +2,111 @@ function About() {
   return (
     <>
       <div className="bg-white text-black py-8">
-        {/* Heading with Fade-in Animation */}
-        <h1 className="font-bold text-center text-black text-3xl mb-4 animate-fadeIn">
+        {/* Heading Section */}
+        <h1 className="font-bold text-center text-black text-3xl mb-8 animate-fadeIn">
           About Our Project
         </h1>
-        <div className="text-center px-4">
-          {/* Section Header with Animation */}
-          <p className="font-bold text-lg mb-2 animate-slideInLeft">
-            Key Features of the Project:
-          </p>
-          {/* List with Hover and Load Animations */}
-          <ul className="list-disc list-inside text-left mx-auto max-w-4xl space-y-4">
-            <li className="hover:translate-x-2 transition-transform duration-300">
-              <strong>Technical Query-Focused Summarization (TQ-LS):</strong>  
-              The model is designed to condense lengthy and complex technical documents into shorter, precise summaries while preserving the essence of the content. This feature is particularly useful for responding to technical queries quickly and effectively.
-            </li>
-            <li className="hover:translate-x-2 transition-transform duration-300">
-              <strong>Machine Translation for Multilingual Communication:</strong>  
-              The summarized content is translated into the target language using advanced translation models like Helsinki-NLP/opus-mt-en-hi and barghavani/English_to_Hindi, ensuring fluency and semantic accuracy in multilingual scenarios.
-            </li>
-            <li className="hover:translate-x-2 transition-transform duration-300">
-              <strong>Deep Learning Approach:</strong>  
-              By leveraging advanced deep learning algorithms, the model can understand the context and relationships between words, which enhances both the summarization and translation processes.
-            </li>
-            <li className="hover:translate-x-2 transition-transform duration-300">
-              <strong>Simple, Efficient, and Scalable Design:</strong>  
-              The model is designed to be lightweight and efficient, making it easy to implement and scale for various applications, from technical documentation to customer support systems.
-            </li>
-          </ul>
 
-          {/* Impact and Use Cases Section */}
-          <p className="font-bold text-lg mt-6 mb-2 animate-slideInRight">
-            Impact and Use Cases:
-          </p>
-          <ul className="list-disc list-inside text-left mx-auto max-w-4xl space-y-4">
-            <li className="hover:scale-105 transition-transform duration-300">
-              <strong>Bridging Communication Gaps:</strong> The project facilitates seamless communication between individuals or teams speaking different languages, especially in technical fields.
-            </li>
-            <li className="hover:scale-105 transition-transform duration-300">
-              <strong>Cross-Cultural Understanding:</strong> By enabling multilingual translations, the project promotes collaboration and knowledge sharing across cultures.
-            </li>
-            <li className="hover:scale-105 transition-transform duration-300">
-              <strong>Improved Query Response:</strong> The summarized and translated outputs are tailored to technical queries, enhancing the efficiency of information retrieval.
-            </li>
-          </ul>
+        {/* Table Section */}
+        <div className="overflow-x-auto px-4">
+          <table className="table-auto border-collapse border border-gray-300 w-full max-w-6xl mx-auto shadow-lg">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border border-gray-300 px-6 py-4 text-left text-lg font-bold">
+                  Section
+                </th>
+                <th className="border border-gray-300 px-6 py-4 text-left text-lg font-bold">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* Key Features Section */}
+              <tr className="hover:bg-gray-50 transition duration-200">
+                <td className="border border-gray-300 px-6 py-4 font-bold">
+                  Key Features
+                </td>
+                <td className="border border-gray-300 px-6 py-4">
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>
+                      <strong>Technical Query-Focused Summarization (TQ-LS):</strong>  
+                      Condenses lengthy technical documents into concise summaries.
+                    </li>
+                    <li>
+                      <strong>Machine Translation:</strong>  
+                      Translates summaries into multiple languages with fluency and semantic accuracy.
+                    </li>
+                    <li>
+                      <strong>Deep Learning Approach:</strong>  
+                      Enhances summarization and translation through advanced algorithms.
+                    </li>
+                    <li>
+                      <strong>Simple, Efficient Design:</strong>  
+                      Lightweight and scalable for various applications.
+                    </li>
+                  </ul>
+                </td>
+              </tr>
 
-          {/* Technology Stack Section */}
-          <p className="font-bold text-lg mt-6 mb-2 animate-slideInLeft">
-            Technology Stack:
-          </p>
-          <ul className="list-disc list-inside text-left mx-auto max-w-4xl space-y-4">
-            <li className="hover:rotate-2 transition-transform duration-300">
-              <strong>Natural Language Processing Models:</strong>  
-              Helsinki-NLP/opus-mt-en-hi for accurate English-to-Hindi translation and barghavani/English_to_Hindi for improving translation fluency.
-            </li>
-            <li className="hover:rotate-2 transition-transform duration-300">
-              <strong>Deep Learning Techniques:</strong>  
-              To ensure the outputs are human-like and contextually relevant.
-            </li>
-            <li className="hover:rotate-2 transition-transform duration-300">
-              <strong>Document Formats Supported:</strong>  
-              The model processes input documents in various formats such as text and PDF files.
-            </li>
-          </ul>
+              {/* Impact and Use Cases Section */}
+              <tr className="hover:bg-gray-50 transition duration-200">
+                <td className="border border-gray-300 px-6 py-4 font-bold">
+                  Impact and Use Cases
+                </td>
+                <td className="border border-gray-300 px-6 py-4">
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>
+                      <strong>Bridging Communication Gaps:</strong>  
+                      Facilitates seamless multilingual communication in technical fields.
+                    </li>
+                    <li>
+                      <strong>Cross-Cultural Understanding:</strong>  
+                      Promotes collaboration across cultures.
+                    </li>
+                    <li>
+                      <strong>Improved Query Response:</strong>  
+                      Enhances information retrieval for technical queries.
+                    </li>
+                  </ul>
+                </td>
+              </tr>
 
-          {/* Conclusion Section */}
-          <p className="font-bold text-lg mt-6 mb-2 animate-fadeIn">
-            Conclusion:
-          </p>
-          <p className="text-left mx-auto max-w-4xl animate-fadeIn delay-200">
-            This project represents a significant step forward in utilizing NLP for technical query-focused summarization and translation. By condensing complex information into concise summaries and providing accurate translations, the model offers a practical solution to global communication challenges in the technical domain. Its simplicity, efficiency, and focus on meaningful output make it a versatile tool for industries, academics, and organizations seeking to enhance multilingual information sharing.
-          </p>
+              {/* Technology Stack Section */}
+              <tr className="hover:bg-gray-50 transition duration-200">
+                <td className="border border-gray-300 px-6 py-4 font-bold">
+                  Technology Stack
+                </td>
+                <td className="border border-gray-300 px-6 py-4">
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>
+                      <strong>NLP Models:</strong>  
+                      Uses Helsinki-NLP/opus-mt-en-hi for English-to-Hindi translation.
+                    </li>
+                    <li>
+                      <strong>Deep Learning Techniques:</strong>  
+                      Ensures contextually relevant, human-like outputs.
+                    </li>
+                    <li>
+                      <strong>Supported Document Formats:</strong>  
+                      Processes text and PDF files.
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+
+              {/* Conclusion Section */}
+              <tr className="hover:bg-gray-50 transition duration-200">
+                <td className="border border-gray-300 px-6 py-4 font-bold">
+                  Conclusion
+                </td>
+                <td className="border border-gray-300 px-6 py-4">
+                  This project leverages NLP for technical summarization and translation, 
+                  offering concise summaries and accurate translations to enhance global 
+                  communication in technical domains.
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </>

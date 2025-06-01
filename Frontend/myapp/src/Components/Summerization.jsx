@@ -31,14 +31,9 @@ function SummarizationTool() {
       }
 
       const data = await response.json();
-      console.log("Api Data:", data);
-
-      // Update finalSummary with the summarized text
-      setFinalSummary(data.summarized_text);  // Ensure only summarized_text is displayed
-
+      setFinalSummary(data.final_summary || "No summary available.");
     } catch (err) {
       setError(err.message);
-      console.log("Error:", err.message);
       setFinalSummary("");
     } finally {
       setLoading(false);
@@ -70,17 +65,14 @@ function SummarizationTool() {
 
         {error && <p className="text-red-500 text-center mt-4">{error}</p>}
 
-        <div className="mt-6">
-          <h2 className="text-xl font-semibold text-gray-800 mb-2">Final Summary</h2>
-          <div className="p-4 border-2 border-gray-300 bg-gray-50 rounded-lg min-h-[100px]">
-            {finalSummary ? (
-              // Display the summarized text as a single line
+        {finalSummary && !error && (
+          <div className="mt-6">
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">Final Summary</h2>
+            <div className="p-4 border-2 border-gray-300 bg-gray-50 rounded-lg min-h-[100px]">
               <p className="text-gray-700">{finalSummary}</p>
-            ) : (
-              <p className="text-gray-400">Your summarized text will appear here...</p>
-            )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
