@@ -28,14 +28,7 @@ function Home() {
             </p>
           </li>
 
-          <li className="p-4 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow">
-            <strong className="text-blue-600 text-lg">
-              Technical Query-Focused Summarization (TQ-LS):
-            </strong>
-            <p className="text-gray-700 mt-2">
-              The model condenses lengthy and complex technical documents into shorter, precise summaries while preserving the essence of the content. Perfect for quick and effective technical queries.
-            </p>
-          </li>
+          
 
           <li className="p-4 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow">
             <Link to="/translation" className="text-blue-600 text-lg font-semibold block">

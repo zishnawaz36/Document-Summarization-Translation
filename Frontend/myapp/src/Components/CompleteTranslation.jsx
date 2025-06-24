@@ -24,18 +24,13 @@ function TranslateSummarizeUI() {
     setShowResults(false);
 
     try {
-      const summarizeResponse = await axios.post("http://localhost:8080/summarize", {
+      const response = await axios.post("http://localhost:8080/sum_trans", {
         text: inputText,
+        language: lang,
       });
 
-      const { original_text, summary } = summarizeResponse.data;
-
-      const translateResponse = await axios.post("http://localhost:8080/translate", {
-        text: inputText,
-        target_lang: lang,
-      });
-
-      const { translation } = translateResponse.data;
+      const { original_text, summary, translation } = response.data;
+      console.log("Api response :",response.data);
 
       setResults({
         originalText: original_text || "N/A",
