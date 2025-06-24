@@ -27,7 +27,7 @@ function Login() {
         localStorage.setItem("token", data.token);
         toast.success("Login successful!");
         alert("Login Successfully")
-        navigate("/services")
+        navigate("/home")
       } else {
         toast.error(data.message);
       }

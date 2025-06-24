@@ -4,38 +4,30 @@ import Header from "./Header";
 function Home() {
   return (
     <>
-    <Header/>
-      {/* Welcome Header with Animation */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white text-center py-6 shadow-lg rounded-lg mb-8">
-        <h1 className="text-4xl font-extrabold mb-2 animate-bounce">
-          Welcome to Our Project
-        </h1>
-        <p className="text-lg font-medium">
-          Please login for further details to explore our amazing features!
-        </p>
-      </div>
+      <Header />
 
-      {/* Login Button with Animation */}
-      <div className="flex justify-center mb-8">
-        <Link to="/login">
-          <button className="px-8 py-3 bg-white text-blue-600 rounded-full font-bold shadow-md transform transition-all hover:scale-110 hover:bg-blue-600 hover:text-white animate-pulse">
-            Login Now
-          </button>
-        </Link>
-      </div>
-
-      {/* Main Content Section */}
-      <div className="flex flex-col items-center bg-gray-100 p-8 h-auto w-full rounded-lg shadow-md">
-        {/* Introduction */}
-        <h2 className="text-2xl font-bold text-gray-800 text-center mb-4">
+      {/* Features Section (same as Services content) */}
+      <div className="flex flex-col items-center bg-gray-100 p-16 h-svh w-full rounded-lg shadow-md">
+        <h2 className="text-5xl font-bold text-gray-800 text-center mb-4">
           Explore the Features of Our Platform
         </h2>
-        <p className="text-gray-600 text-center max-w-3xl mb-8">
+        <p className="text-gray-600 text-center max-w-4xl mb-8 text-lg">
           Our platform leverages cutting-edge technology to provide robust solutions for technical summarization, multilingual communication, and deep learning advancements. Here's what you can expect:
         </p>
 
-        {/* Features List */}
-        <ul className="space-y-6 max-w-4xl text-gray-800">
+        <ul className="space-y-6 max-w-6xl text-gray-800">
+          <li className="flex flex-col p-4 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+            <Link to="/both" className="text-blue-600 text-lg font-semibold mb-1">
+              Summarization and Translation:
+            </Link>
+            <Link to="/completetrans" className="text-blue-600 text-lg font-semibold mb-2">
+              Complete Translation:
+            </Link>
+            <p className="text-gray-700">
+              It helps to summarize documents and translate the sentences.
+            </p>
+          </li>
+
           <li className="p-4 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow">
             <strong className="text-blue-600 text-lg">
               Technical Query-Focused Summarization (TQ-LS):
@@ -46,20 +38,20 @@ function Home() {
           </li>
 
           <li className="p-4 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow">
-            <strong className="text-blue-600 text-lg">
+            <Link to="/translation" className="text-blue-600 text-lg font-semibold block">
               Machine Translation for Multilingual Communication:
-            </strong>
+            </Link>
             <p className="text-gray-700 mt-2">
               Translates summarized content into the target language using advanced translation models like Helsinki-NLP and Barghavani, ensuring fluency and semantic accuracy in multilingual scenarios.
             </p>
           </li>
 
           <li className="p-4 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow">
-            <strong className="text-blue-600 text-lg">
-              Deep Learning Approach:
-            </strong>
+            <Link to="/summarization" className="text-blue-600 text-lg font-semibold block">
+              Query Based Summarization:
+            </Link>
             <p className="text-gray-700 mt-2">
-              Leveraging advanced deep learning algorithms to understand context and relationships between words, enhancing summarization and translation processes.
+              This feature allows users to generate summaries based on specific queries, providing focused and concise information tailored to the user's needs.
             </p>
           </li>
         </ul>

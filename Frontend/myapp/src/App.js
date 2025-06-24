@@ -18,6 +18,7 @@ const Summerization = React.lazy(() => import ('./Components/Summerization'));
 const CombineSummaryandTrans = lazy(() => import("./Components/SummaryandTranslate.jsx"));
 const Diagram=lazy(() => import("./Components/Dia.jsx"));
 const CompleteTrans=lazy(() => import("./Components/CompleteTranslation.jsx"));
+const Details = lazy(() => import("./Components/DetailsAboutProject.jsx"));
 function App() {
   return (
     <Router>
@@ -26,12 +27,14 @@ function App() {
        
        
         <Routes>
+          <Route path='/home' element={<Home/>}/>
+          <Route path="/details" element={<Details/>}/>
           <Route path='/dia' element={<Diagram/>}/>
           <Route path="/mainhome" element={<Mainhome/>}/>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/" element={<Mainhome/>} />
           <Route path="/completetrans" element={<CompleteTrans/>}/>
           <Route path='/both' element={<CombineSummaryandTrans/>}></Route>
-          <Route path='/translation' element={<TextTranslator />} /> {/* Corrected the typo */}
+          <Route path='/translation' element={<TextTranslator />} />
           <Route path='/summarization' element={<Summerization />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
